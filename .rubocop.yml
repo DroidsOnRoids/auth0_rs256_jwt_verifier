@@ -1,0 +1,9 @@
+inherit_gem:
+  sanelint:
+    - config/default.yml
+
+AllCops:
+  TargetRubyVersion: 2.4
+
+Style/Documentation:
+  Enabled: false
