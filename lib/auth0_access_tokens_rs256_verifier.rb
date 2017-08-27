@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "http"
 require "json"
+require "openssl"
 
 require "auth0_jwt_rs256_verifier/user_id"
 require "auth0_jwt_rs256_verifier/results"
