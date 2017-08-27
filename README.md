@@ -1,4 +1,6 @@
-# Auth0 JWT (RS256) verification library
+[![Build Status](https://travis-ci.org/DroidsOnRoids/auth0_rs256_jwt_verifier.svg?branch=master)](https://travis-ci.org/DroidsOnRoids/auth0_rs256_jwt_verifier)
+
+# Auth0 JWT (RS256) verification library 
 [Auth0](https://auth0.com) is web service handling users identities which can be easily plugged
 into your application. It provides [SDKs](https://auth0.com/docs) for many languages which enable you to sign up/in users
 and returns access token ([JWT](https://jwt.io)) in exchange. Access token can be used then to access your's Web Service.
