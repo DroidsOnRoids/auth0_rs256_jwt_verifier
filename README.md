@@ -26,7 +26,7 @@ Install it using [Bundler](https://bundler.io/) specifying it as dependency in y
 # Verifier caches RS256 certificates fetched from jwks_uri.
 # You should initialize it once and reuse for JWTs verification.
 
-require "auth0_jwt_verifier"
+require "auth0_rs256_jwt_verifier"
 
 AUTH0_JWT_VERIFIER = Auth0RS256JWTVerifier.new(
   issuer:   "ISSUER",
