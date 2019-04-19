@@ -1,5 +1,9 @@
 language: ruby
 rvm:
+  - 2.6.0
   - 2.4.1
-  - 2.2
+  - 2.3.1
   - jruby
+gemfile:
+  - gemfiles/json-jwt-1.7.gemfile
+  - gemfiles/json-jwt-1.10.gemfile

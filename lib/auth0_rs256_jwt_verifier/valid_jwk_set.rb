@@ -24,4 +24,5 @@ class Auth0RS256JWTVerifier
         jwk.x5c.any?
     end
   end
+  private_constant :ValidJWKSet
 end

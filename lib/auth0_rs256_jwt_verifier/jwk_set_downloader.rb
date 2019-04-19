@@ -3,6 +3,21 @@ class Auth0RS256JWTVerifier
   class JWKSetDownloader
     InvalidJWKSetError = Class.new(RuntimeError)
 
+    def initialize(http)
+      @http = http
+    end
+
+    def download(url)
+      url = String(url)
+      body = @http.get(url)
+      json = JSON.parse(body)
+      begin
+        JWKSet.new(json)
+      rescue JWKSet::ParseError
+        raise InvalidJWKSetError
+      end
+    end
+
     class JWKSet
       include Enumerable
 
@@ -22,20 +37,6 @@ class Auth0RS256JWTVerifier
       end
     end
     private_constant :JWKSet
-
-    def initialize(http)
-      @http = http
-    end
-
-    def download(url)
-      body = @http.get(url)
-      json = JSON.parse(body)
-      begin
-        JWKSet.new(json)
-      rescue JWKSet::ParseError
-        raise InvalidJWKSetError
-      end
-    end
   end
   private_constant :JWKSetDownloader
 end

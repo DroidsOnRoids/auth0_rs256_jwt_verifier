@@ -7,7 +7,7 @@ class Auth0RS256JWTVerifier
       @decoder = JWTDecoder.new
     end
 
-    it "should decodde simple jwt" do
+    it "should decode simple jwt" do
       jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImlkMTIzNCJ9." \
             "eyJzdWIiOiIxMjM0NTY3ODkwIiwiYXVkIjoiYXVkaWVuY2UiLCJpc3MiO" \
             "iJpc3N1ZXIifQ.cp374RbcG-q8rTLxSoWtLK7dtn5cBa3_g4riKL9OSt0"

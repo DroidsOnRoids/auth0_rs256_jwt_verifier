@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 Gem::Specification.new do |s|
   s.name          = "auth0_rs256_jwt_verifier"
-  s.version       = "0.0.1"
+  s.version       = "0.0.2"
   s.date          = "2017-06-12"
   s.summary       = "Auth0 JWT (RS256) verification library"
   s.description   = <<-DESCRIPTION.gsub(/\s+/, " ").strip
@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.2.0"
 
-  s.add_runtime_dependency "http", "~> 2"
-  s.add_runtime_dependency "json-jwt", "~> 1.7"
+  s.add_runtime_dependency "http", ">= 2"
+  s.add_runtime_dependency "json-jwt", ">= 1.7"
 
   s.add_development_dependency "rake", "~> 12"
   s.add_development_dependency "minitest", "~> 5"

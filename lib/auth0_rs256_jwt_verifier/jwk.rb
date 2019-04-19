@@ -3,6 +3,16 @@ class Auth0RS256JWTVerifier
   class JWK
     ParseError = Class.new(RuntimeError)
 
+    def initialize(hash)
+      raise ParseError unless hash.is_a?(Hash)
+      %i(Alg Kty Use X5C N E Kid X5T).each do |field_name|
+        field = self.class.const_get(field_name).new(hash[String(field_name).downcase])
+        instance_variable_set("@#{String(field_name).downcase}", field)
+      end
+    end
+
+    attr_reader :alg, :kty, :use, :x5c, :n, :e, :kid, :x5t
+
     def inspect
       "JWK(\n"                    \
       "\talg: #{@alg},\n"         \
@@ -124,15 +134,6 @@ class Auth0RS256JWTVerifier
         @certificates.each { |cert| yield cert }
       end
     end
-
-    def initialize(hash)
-      raise ParseError unless hash.is_a?(Hash)
-      %i(Alg Kty Use X5C N E Kid X5T).each do |field_name|
-        field = self.class.const_get(field_name).new(hash[String(field_name).downcase])
-        instance_variable_set("@#{String(field_name).downcase}", field)
-      end
-    end
-
-    attr_reader :alg, :kty, :use, :x5c, :n, :e, :kid, :x5t
   end
+  private_constant :JWK
 end

@@ -9,6 +9,7 @@ class Auth0RS256JWTVerifier
     end
 
     def find(id)
+      id = String(id)
       cert = certs.find { |c| c.id == id }
       raise NotFoundError, "cert #{id} doesn't exist" if cert.nil?
       cert.cert
@@ -28,4 +29,5 @@ class Auth0RS256JWTVerifier
       OpenSSL::X509::Certificate.new(encoded)
     end
   end
+  private_constant :CertsSet
 end

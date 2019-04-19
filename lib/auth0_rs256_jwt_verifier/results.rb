@@ -18,7 +18,7 @@ class Auth0RS256JWTVerifier
 
     class ValidAccessToken < Base
       def initialize(user_id)
-        @user_id = user_id
+        @user_id = UserId.new(user_id)
       end
 
       attr_reader :user_id

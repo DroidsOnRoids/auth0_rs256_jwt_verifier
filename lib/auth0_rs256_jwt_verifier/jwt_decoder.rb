@@ -9,6 +9,7 @@ class Auth0RS256JWTVerifier
     end
 
     def signed_with?(jwt_str, public_key)
+      jwt_str = String(jwt_str)
       JSON::JWT.decode(jwt_str, public_key)
       true
     rescue JSON::JWS::VerificationFailed

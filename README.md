@@ -34,9 +34,11 @@ AUTH0_JWT_VERIFIER = Auth0RS256JWTVerifier.new(
   jwks_url: "https://YOUR_AUTH0_DOMAIN/.well-known/jwks.json"
 )
 
-if AUTH0_JWT_VERIFIER.verify("JWT_ACCESS_TOKEN_SIGNED_USING_RS256_ALGORITHM").valid?
-  # handle valid access token
+result = AUTH0_JWT_VERIFIER.verify("JWT_ACCESS_TOKEN_SIGNED_USING_RS256_ALGORITHM").valid?
+if result.valid?
+  p "Token is valid"
+  p "User id: #{result.user_id}"
 else
-  # handle invalid access token
+  p "Token is invalid"
 end
 ```

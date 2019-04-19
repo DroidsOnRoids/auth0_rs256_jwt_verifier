@@ -101,16 +101,16 @@ describe Auth0RS256JWTVerifier do
   private
 
   def http_stub
-    @http_stub = Object.new
+    http_stub = Object.new
     jwks = sample_jwks
-    @http_stub.define_singleton_method(:get) { |*_| jwks }
-    @http_stub
+    http_stub.define_singleton_method(:get) { |*_| jwks }
+    http_stub
   end
 
   def exp_verifier_stub(expired: false)
-    @exp_verifier_stub = Object.new
-    @exp_verifier_stub.define_singleton_method(:expired?) { |*_| expired }
-    @exp_verifier_stub
+    exp_verifier_stub = Object.new
+    exp_verifier_stub.define_singleton_method(:expired?) { |*_| expired }
+    exp_verifier_stub
   end
 
   def sample_jwks
