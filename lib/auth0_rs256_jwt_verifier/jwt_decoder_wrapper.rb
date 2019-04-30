@@ -59,9 +59,9 @@ class Auth0RS256JWTVerifier
 
     def find_public_key_for(decoded_jwt)
       kid = decoded_jwt[:kid]
-      @certificates.find(kid).public_key
-    rescue CertsSet::NotFoundError => e
-      raise CertNotFoundError, e.message
+      cert = @certificates.find(kid)
+      raise CertNotFoundError, "cert #{kid} not found" if cert == :not_found
+      cert.public_key
     end
 
     def verify_is_signed(jwt_str, public_key)

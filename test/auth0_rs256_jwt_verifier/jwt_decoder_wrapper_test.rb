@@ -84,10 +84,7 @@ class Auth0RS256JWTVerifier
         :decode,
         valid_decoded_jwt(kid: "unexisting key"),
       ) do
-        @certs_set.stub(
-          :find,
-          ->(*_) { raise CertsSet::NotFoundError },
-        ) do
+        @certs_set.stub(:find, :not_found) do
           assert_raises(JWTDecoderWrapper::CertNotFoundError) do
             @jwt_decoder.decode("jwt")
           end
