@@ -24,19 +24,12 @@ class Auth0RS256JWTVerifier
     payload = JWTDecoderWrapper.new(
       @audience,
       @issuer,
-      certificates.fetch,
+      @certificates.fetch,
       exp_verifier: @exp_verifier,
       jwt_decoder: JWTDecoder.new,
     ).decode(access_token)
     Results::ValidAccessToken.new(UserId.new(payload.sub))
   rescue JWTDecoderWrapper::Error
     Results::INVALID_ACCESS_TOKEN
-  end
-
-  private
-
-  def certificates
-    return @certificates if @certificates
-    @certificates = CertsSet.new(ValidJWKSet.new(@jwks_downloader.download(@jwks_url)))
   end
 end
