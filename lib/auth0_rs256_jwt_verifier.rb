@@ -2,6 +2,7 @@
 require "http"
 require "json"
 
+require "auth0_rs256_jwt_verifier/http_wrapper"
 require "auth0_rs256_jwt_verifier/user_id"
 require "auth0_rs256_jwt_verifier/results"
 require "auth0_rs256_jwt_verifier/jwt_decoder"
@@ -10,11 +11,13 @@ require "auth0_rs256_jwt_verifier/exp_verifier"
 require "auth0_rs256_jwt_verifier/cached_certificates"
 
 class Auth0RS256JWTVerifier
+  InvalidHTTPDependencyError = Class.new(RuntimeError)
+
   def initialize(issuer:, audience:, jwks_url:, http: HTTP, exp_verifier: ExpVerifier.new)
-    @audience        = audience
-    @issuer          = issuer
+    @audience        = String(audience)
+    @issuer          = String(issuer)
     @exp_verifier    = exp_verifier
-    @certificates    = CachedCertificates.new(http, jwks_url)
+    @certificates    = CachedCertificates.new(HttpWrapper.new(http), jwks_url)
   end
 
   def verify(access_token)
