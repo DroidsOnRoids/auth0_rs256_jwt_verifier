@@ -114,6 +114,6 @@ describe Auth0RS256JWTVerifier do
   end
 
   def sample_jwks
-    @sample_jwsk ||= File.read("./test/fixtures/sample_jwks.json")
+    @sample_jwks ||= File.read("./test/fixtures/sample_jwks.json")
   end
 end
